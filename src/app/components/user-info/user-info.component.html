@@ -1,0 +1,46 @@
+<div class="user__form">
+  <form [formGroup]="userForm" (ngSubmit)="validateUserInput()">
+    <div class="form-group">
+      <label for="firstname">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstname"
+        formControlName="firstname"
+      />
+
+      @if (userForm.get('firstname')?.hasError('required')
+      &&userForm.get('firstname')?.touched) {
+      <div class="error__message">First name is required.</div>
+      } @if (userForm.get('firstname')?.hasError('minlength')
+      &&userForm.get('firstname')?.touched) {
+      <div class="error__message">
+        First name must be at least 5 characters long.
+      </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="lastname">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastname"
+        formControlName="lastname"
+      />
+      @if (userForm.get('lastname')?.hasError('required')
+      &&userForm.get('lastname')?.touched) {
+      <div class="error__message">Last name is required.</div>
+      } @if (userForm.get('lastname')?.hasError('minlength')
+      &&userForm.get('lastname')?.touched) {
+      <div class="error__message">
+        Last name must be at least 5 characters long.
+      </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <!-- prevent submit to invalid data to disable until valid form -->
+      <button type="submit" [disabled]="!userForm.valid">Capture Info</button>
+    </div>
+  </form>
+</div>
